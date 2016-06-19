@@ -27,6 +27,8 @@
 </head>
 
 <style>
+
+
 cat {
     color: blue;
 }
@@ -38,17 +40,20 @@ p.ex{
     margin-top: 25px;
 }
 
+
+
 #rcorners1 {
     top: 40%;
     left: 45.75%;
     position: fixed;
     border-radius: 25px;
+    border: 5px solid #858585;
     background: #798694;
     opacity: 0.3;
     padding: 20px;
     width: 110px;
     height: 80px;
-    line-height: 40px;
+    line-height: 35px;
 
 }
 
@@ -69,13 +74,60 @@ p.ex{
 
 }
 
+/*Music Player*/
+#rcorners3 {
+    border-radius: 8px;
+    border: 4px 4px #4c637b;
+    background: #584c7b;
+    /*background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;*/
+    right:0%;
+    bottom: 0%;
+    position: fixed;
+    padding: 20px;
+    width: 40px;
+    height: 140px;
+}
+
+#playbutton {
+    right:0%;
+    bottom:0%;
+    margin-right: 5px;
+    margin-bottom: 110px;
+    position: fixed;
+}
+
+#pausebutton {
+    right:0%;
+    bottom:0%;
+    margin-right: 5px;
+    margin-bottom: 70px;
+    position: fixed;
+}
+
+#myBG {
+    margin-top: 0px;
+    position: absolute;
+    opacity: 1;
+}
+
+
+
 </style>
 
 
 <!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style="height: fixed">
 
+<!--BG IMAGE-->
+<!--<img src="Images/Tenshi1.jpg" id="myBG" class="BG"</img>-->
+
+    <!--Music Player (ADD WHITE ARROW, PAUSE, STOP BUTTONS)(MAKETHEMSIDEWAYS)-->
+    <p id="rcorners3"></p>
+    <img src="Images/watermelonplay30x30.png" id="playbutton"></p>
+    <img src="Images/BurningPause2.png" id="pausebutton"></p>
 
 
     <!-- Navigation -->
@@ -109,7 +161,7 @@ p.ex{
                         <a class="page-scroll" href="#contact">連絡</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#death" onclick="playDankBeats()">氏ね</a>
+                        <a class="page-scroll" href="#death">氏ね</a>
                     </li>
                 </ul>
             </div>
@@ -117,6 +169,11 @@ p.ex{
         </div>
         <!-- /.container -->
     </nav>
+
+
+    <!--BG IMAGE-->
+    <img src="Images/Tenshi1.jpg" id="myBG" class="BG"</img>
+
 
     <!-- Intro Section -->
     <section id="intro" class="intro-section no-user-select">
@@ -183,12 +240,29 @@ p.ex{
                 </div>
                 <h4><font color="#B48671">死ねば良いよ。いぁ、死ぬ方が<strong>マシ</strong></p></h4>
                      <img src="Images/BAKA.png" class="img-circle" alt="愛してあげるよ" width="304" height="236" onclick="randomMargin();ShowCopyBox2('馬鹿犬だわ♥')">
-                     <p id="rcorners2" style="display:none;" class='ex'></p>
+                     <!--<img src="Images/majo.png" class="img-circle" alt="愛してあげるよ" width="304" height="236" onclick="randomMargin();ShowCopyBox2('馬鹿犬だわ♥')">-->
+                     <p id="rcorners2" style="display:none;" class='ex randBox'></p>
             </div>
         </div>
     </section>
 
 
+
+
+
+
+
+<!--Button to test scroll position-->
+<!--<a class="btn btn-primary" onclick="getScroll()">Wat my scroll pos?</a>-->
+
+<!--Instantiate music and music player-->
+<script>
+var audio = new Audio('Music/08 Voile Mahou Toshokan.mp3');
+audio.volume = 0.3;
+$("#div_Id").hide();
+</script>
+
+<!-- SCRIPT AFTER THIS POINT -->
 
     <!-- 1. Define some markup -->
 
@@ -217,6 +291,8 @@ p.ex{
 
 
 
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
     <script>
@@ -232,7 +308,6 @@ p.ex{
 
 
     <script>
-    var y = "hahahaha";
     function ShowCopyBox2(z){
         document.getElementById("rcorners2").innerHTML = z;
         var x = document.getElementById("rcorners2");
@@ -259,19 +334,109 @@ function sayHi() {
 function randomMargin(){
     var randomnumber1=Math.floor(Math.random()*80);
     var randomnumber2=Math.floor(Math.random()*80);
-    $('.ex').css({"top": randomnumber1+"%", "left": randomnumber2+"%"});
+    $('.randBox').css({"top": randomnumber1+"%", "left": randomnumber2+"%"});
 }
 </script>
 
+
+<!--Play song-->
 <script>
 function playDankBeats(){
-    var audio = new Audio('Music/08 Voile Mahou Toshokan.mp3');
-    audio.volume = 0.3;
     audio.play();
 }
 </script>
 
+<!--Alert() current scroll value-->
+<script>
+function alertScroll() {
+    var scroll = $(window).scrollTop();
+    alert(scroll);
+}
+</script>
 
+<script>
+$(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+
+   //alertScroll();
+   //$('.BG').css({"top": "40%"});
+   if(scroll < 3000){
+       $('.BG').css({"opacity": (1 - scroll/3000),"top": (250*(scroll/3000)) + "%"});
+   }
+});
+
+</script>
+
+
+<!--If bottom of screen, play audio-->
+<script>
+$(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+   if(scroll + $(window).height() == $(document).height()) {
+       //alert(audio.currentTime);
+       if(!isPlaying(audio)){
+           //alert(scroll);
+           audio.play();
+       }
+   }
+   //showPlayer();
+});
+</script>
+
+<!--BACKGROUND IMAGE SCROLL-->
+<script>
+$(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+    //$('.BG').css({"top": (100*(scroll/5608.0))+"%"});
+});
+</script>
+
+<script>
+$(window).on('beforeunload', function() {
+    $(window).scrollTop(0);
+});
+</script>
+
+
+<script>
+function showPlayer(){
+
+}
+
+</script>
+
+
+
+<!--Check if audio paused-->
+<script>
+function isPlaying(player) {
+    //var player = document.getElementById(playerId);
+    return !player.paused && !player.ended && 0 < player.currentTime;
+}
+</script>
+
+
+<script>
+    var item = document.getElementById("myBG");
+    var img_height = $(item).height();
+    var div_height = $(item).parent().height();
+    if(img_height<div_height){
+        //INCREASE HEIGHT OF IMAGE TO MATCH CONTAINER
+        $(item).css({'width': 'auto', 'height': div_height });
+        //GET THE NEW WIDTH AFTER RESIZE
+        var img_width = $(item).width();
+        //GET THE PARENT WIDTH
+        var div_width = $(item).parent().width();
+        //GET THE NEW HORIZONTAL MARGIN
+        var newMargin = (div_width-img_width)/2+'px';
+        //SET THE NEW HORIZONTAL MARGIN (EXCESS IMAGE WIDTH IS CROPPED)
+        $(item).css({'margin-left': newMargin });
+    }else{
+        //CENTER IT VERTICALLY (EXCESS IMAGE HEIGHT IS CROPPED)
+        var newMargin = (div_height-img_height)/2+'px';
+        $(item).css({'margin-top': newMargin});
+    }
+</script>
 
 
 
