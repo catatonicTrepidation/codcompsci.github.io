@@ -28,6 +28,44 @@
 
 <style>
 
+b#rotator {
+    text-decoration: none;
+    padding-right: 20px;
+    left: 50%;
+    position: absolute;
+    /*-webkit-animation: move 5s;
+    animation: move 5s;*/
+}
+
+b#rotator img {
+    /*-webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    border-radius:60px;
+    transition-duration: 1s;
+    */
+    }
+
+
+@-webkit-keyframes move
+{
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+}
+@keyframes move
+{
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+}
 
 cat {
     color: blue;
@@ -74,11 +112,13 @@ p.ex{
 
 }
 
-/*Music Player*/
-#rcorners3 {
-    border-radius: 8px;
+/*Music Player - MAKE IT A TRIANGLE ON THE BOTTOM RIGHT
+OR A SQUARE MADE OF FOUR BLOCKS, EACH WITH A BUTTON*/
+#PlayerBody {
+    /*border-radius: 8px;*/
     border: 4px 4px #4c637b;
-    background: #584c7b;
+    background: #000000;
+    opacity: 0.7;
     /*background: url(paper.gif);
     background-position: left top;
     background-repeat: repeat;*/
@@ -87,23 +127,25 @@ p.ex{
     position: fixed;
     padding: 20px;
     width: 40px;
-    height: 140px;
+    height: 90px;
 }
 
 #playbutton {
     right:0%;
     bottom:0%;
-    margin-right: 5px;
-    margin-bottom: 110px;
+    margin-right: 7px;
+    margin-bottom: 65px;
     position: fixed;
+    opacity: 0.8;
 }
 
 #pausebutton {
     right:0%;
     bottom:0%;
-    margin-right: 5px;
-    margin-bottom: 70px;
+    margin-right: 9px;
+    margin-bottom: 65px;
     position: fixed;
+    opacity: 0.8;
 }
 
 #myBG {
@@ -114,20 +156,43 @@ p.ex{
 
 
 
+.btn-emailStyle {
+
+z-index: 2;
+}
+
+mPlayer{
+
+}
+
+
+
 </style>
 
 
-<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
 
+
+
+
+
+
+<!--BG IMAGE-->
+<img src="Images/Tenshi1.jpg" id="myBG" class="BG"</img>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style="height: fixed">
 
 <!--BG IMAGE-->
 <!--<img src="Images/Tenshi1.jpg" id="myBG" class="BG"</img>-->
 
+<!--Have the music player fly in from the left side-->
+<!--Or have it appear surrounded by purple glow, as if cast from a spell?-->
+<mPLayer class="MusicPlayer" style="display:none">
     <!--Music Player (ADD WHITE ARROW, PAUSE, STOP BUTTONS)(MAKETHEMSIDEWAYS)-->
-    <p id="rcorners3"></p>
-    <img src="Images/watermelonplay30x30.png" id="playbutton"></p>
-    <img src="Images/BurningPause2.png" id="pausebutton"></p>
+    <p id="PlayerBody"></p>
+    <img src="Images/WhitePlaySimple2.png" id="playbutton" class="playbutton" onclick="PlayPause()" style="display:none"></p>
+    <img src="Images/WhitePauseSimple.png" id="pausebutton" class="pausebutton" onclick="PlayPause()" style="display:block"></p>
+</mPLayer>
 
 
     <!-- Navigation -->
@@ -171,8 +236,7 @@ p.ex{
     </nav>
 
 
-    <!--BG IMAGE-->
-    <img src="Images/Tenshi1.jpg" id="myBG" class="BG"</img>
+
 
 
     <!-- Intro Section -->
@@ -194,6 +258,7 @@ p.ex{
             <div class="row">
                 <div class="col-lg-12">
                     <h1>アバウト</h1>
+                    <a class="btn btn-primary page-scroll" href="#about">これをクリックじゃあ</a>
                 </div>
                 <h5>これはね、俺のテストよ。 <cat><strong>すごいでしょ？</strong></cat> </h5>
             </div>
@@ -206,6 +271,7 @@ p.ex{
             <div class="row">
                 <div class="col-lg-12">
                     <h1>サービス</h1>
+                    <a class="btn btn-primary page-scroll" href="#about">これをクリックじゃあ</a>
                 </div>
                 <kbd>詰まらない</kbd>
             </div>
@@ -218,18 +284,20 @@ p.ex{
             <div class="row">
                 <div class="col-lg-12">
                     <h1>Contact Section</h1>
+                    <!--<h4><font color="#1a6680">はい、連絡の方はこれ:</font> <h5 id="foo" class="text-info btn btn-slick" value="Input Button">wildcharizard@gnail.com</p></h4>-->
+                         <input type="button" onclick="ShowCopyBox();" id="foo" class="text-info btn-emailStyle btn-slick fader" value="wildcharizard@gnail.com">
+                         <!--<button class="btn1">Fade out</button>
+                         <button class="btn2">Fade in</button>
+                         <p class="ex">HI THERE NEIGHBOR</p>-->
                 </div>
-                <!--<h4><font color="#1a6680">はい、連絡の方はこれ:</font> <h5 id="foo" class="text-info btn btn-slick" value="Input Button">wildcharizard@gnail.com</p></h4>-->
-                     <input type="button" onclick="ShowCopyBox();" id="foo" class="text-info btn-emailStyle btn-slick fader" value="wildcharizard@gnail.com">
                      <div>
                          <p id="rcorners1" style="display:none;" class="ex"></p>
                      </div>
-                     <!--<button class="btn1">Fade out</button>
-                     <button class="btn2">Fade in</button>
-                     <p class="ex">HI THERE NEIGHBOR</p>-->
+
             </div>
         </div>
     </section>
+
 
     <!-- Death Section -->
     <section id="death" class="death-section no-user-select">
@@ -239,8 +307,8 @@ p.ex{
                     <h1>デースです</h1>
                 </div>
                 <h4><font color="#B48671">死ねば良いよ。いぁ、死ぬ方が<strong>マシ</strong></p></h4>
-                     <img src="Images/BAKA.png" class="img-circle" alt="愛してあげるよ" width="304" height="236" onclick="randomMargin();ShowCopyBox2('馬鹿犬だわ♥')">
-                     <!--<img src="Images/majo.png" class="img-circle" alt="愛してあげるよ" width="304" height="236" onclick="randomMargin();ShowCopyBox2('馬鹿犬だわ♥')">-->
+                     <!--<img src="Images/BAKA.png" class="img-circle" alt="愛してあげるよ" width="304" height="236" onclick="randomMargin();ShowCopyBox2('馬鹿犬だわ♥')">-->
+                     <img src="Images/majo.png" class="img-circle" alt="愛してあげるよ" width="304" height="236" onclick="randomMargin();ShowCopyBox2('馬鹿犬だわ♥')">
                      <p id="rcorners2" style="display:none;" class='ex randBox'></p>
             </div>
         </div>
@@ -259,7 +327,7 @@ p.ex{
 <script>
 var audio = new Audio('Music/08 Voile Mahou Toshokan.mp3');
 audio.volume = 0.3;
-$("#div_Id").hide();
+//USE this: $("#div_Id").hide();
 </script>
 
 <!-- SCRIPT AFTER THIS POINT -->
@@ -346,11 +414,19 @@ function playDankBeats(){
 }
 </script>
 
-<!--Alert() current scroll value-->
+<!--Pause/Play-->
 <script>
-function alertScroll() {
-    var scroll = $(window).scrollTop();
-    alert(scroll);
+function PlayPause() {
+    if(isPlaying(audio)) {
+        audio.pause();
+        $('.playbutton').css('display', 'block');
+        $('.pausebutton').css('display', 'none');
+    }
+    else {
+        audio.play();
+        $('.playbutton').css('display', 'none');
+        $('.pausebutton').css('display', 'block');
+    }
 }
 </script>
 
@@ -368,19 +444,35 @@ $(window).scroll(function() {
 </script>
 
 
-<!--If bottom of screen, play audio-->
+<!--If at bottom of screen, play audio-->
 <script>
 $(window).scroll(function() {
     var scroll = $(window).scrollTop();
    if(scroll + $(window).height() == $(document).height()) {
        //alert(audio.currentTime);
        if(!isPlaying(audio)){
-           //alert(scroll);
            audio.play();
+           showPlayer();
+           slideRight();
        }
    }
-   //showPlayer();
 });
+</script>
+
+<!--Animation that shows music player-->
+<script>
+function showPlayer() {
+
+    $('.MusicPlayer').css('display','block');
+}
+</script>
+
+<!--Alert() current scroll value-->
+<script>
+function alertScroll() {
+    var scroll = $(window).scrollTop();
+    alert(scroll);
+}
 </script>
 
 <!--BACKGROUND IMAGE SCROLL-->
@@ -397,16 +489,6 @@ $(window).on('beforeunload', function() {
 });
 </script>
 
-
-<script>
-function showPlayer(){
-
-}
-
-</script>
-
-
-
 <!--Check if audio paused-->
 <script>
 function isPlaying(player) {
@@ -415,7 +497,7 @@ function isPlaying(player) {
 }
 </script>
 
-
+<!--BORROWED CODE (like a lot of this is btw)-->
 <script>
     var item = document.getElementById("myBG");
     var img_height = $(item).height();
@@ -438,7 +520,19 @@ function isPlaying(player) {
     }
 </script>
 
+<!--Move object across screen-->
+<script>
+function slideRight(){
+    //text-decoration: none;
+    //padding-right: 20px;
+    //left: 50%;
+    //position: absolute;
+    //$('.b').css('left','50%';'-webkit-animation','move 5s';'animation','move 5s');
+    alert($('.b').css('-webkit-animeation','move 5s');
+}
+</script>
 
+    <!--<b id="rotator" class='b'><img src="//jsfiddle.net/img/logo.png" /></b>-->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -452,5 +546,6 @@ function isPlaying(player) {
 
 
 </body>
+
 
 </html>
