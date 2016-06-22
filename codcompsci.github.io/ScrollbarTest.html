@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en" class="scrollable-content">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>COD Comp-Sci Club</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/scrolling-nav.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<style>
+/*Custom scrollbar CSS*/
+#scrolly {
+    /*
+    background-color: #808;*/
+    width: 80px;
+    height: 118px;
+    /*border: 1px solid black;*/
+    right: 0;
+    top: 90px;
+    position: absolute;
+}
+
+b#rotator {
+    text-decoration: none;
+    padding-right: 20px;
+    left: 50%;
+    position: absolute;
+    /*-webkit-animation: move 5s;
+    animation: move 5s;*/
+}
+
+b#rotator img {
+    /*-webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    border-radius:60px;
+    transition-duration: 1s;
+    */
+    }
+
+
+@-webkit-keyframes move
+{
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+}
+@keyframes move
+{
+    from {
+        left: 0;
+    }
+    to {
+        left: 50%;
+    }
+}
+
+cat {
+    color: blue;
+}
+dog {
+    class="text-primary";
+}
+
+p.ex{
+    margin-top: 25px;
+}
+
+
+
+#rcorners1 {
+    top: 40%;
+    left: 45.75%;
+    position: fixed;
+    border-radius: 25px;
+    border: 5px solid #858585;
+    background: #798694;
+    opacity: 0.3;
+    padding: 20px;
+    width: 110px;
+    height: 80px;
+    line-height: 35px;
+
+}
+
+#rcorners2 {
+    var rando1 = (Math.random()*100) | 0;
+    var rando2 = (Math.random()*100) | 0;
+
+    top: 60%;
+    left: 70%;
+    position: fixed;
+    border-radius: 50px;
+    background: #b03d71;
+    opacity: 0.8;
+    padding: 20px;
+    width: 120px;
+    height: 120px;
+    line-height: 60px;
+
+}
+
+/*Music Player - MAKE IT A TRIANGLE ON THE BOTTOM RIGHT
+OR A SQUARE MADE OF FOUR BLOCKS, EACH WITH A BUTTON*/
+#PlayerBody {
+    /*border-radius: 8px;*/
+    border: 4px 4px #4c637b;
+    background: #000000;
+    opacity: 0.7;
+    /*background: url(paper.gif);
+    background-position: left top;
+    background-repeat: repeat;*/
+    right:0%;
+    bottom: 0%;
+    position: fixed;
+    padding: 20px;
+    width: 40px;
+    height: 90px;
+}
+
+#playbutton {
+    right:0%;
+    bottom:0%;
+    margin-right: 7px;
+    margin-bottom: 65px;
+    position: fixed;
+    opacity: 0.8;
+}
+
+#pausebutton {
+    right:0%;
+    bottom:0%;
+    margin-right: 9px;
+    margin-bottom: 65px;
+    position: fixed;
+    opacity: 0.8;
+}
+
+#myBG {
+    margin-top: 0px;
+    position: absolute;
+    opacity: 1;
+}
+
+
+
+.btn-emailStyle {
+
+z-index: 2;
+}
+
+mPlayer{
+
+}
+
+
+
+</style>
+
+
+
+
+
+
+
+
+<!--BG IMAGE-->
+<img src="Images/Tenshi1.jpg" id="myBG" class="BG"</img>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style="height: fixed">
+
+
+    <!--Custom scrollbar-->
+    <img src="Images/CustomScrollbar.png" id="scrolly" /></img>
+
+
+<!--BG IMAGE-->
+<!--<img src="Images/Tenshi1.jpg" id="myBG" class="BG"</img>-->
+
+<!--Have the music player fly in from the left side-->
+<!--Or have it appear surrounded by purple glow, as if cast from a spell?-->
+<mPLayer class="MusicPlayer" style="display:none">
+    <!--Music Player (ADD WHITE ARROW, PAUSE, STOP BUTTONS)(MAKETHEMSIDEWAYS)-->
+    <p id="PlayerBody"></p>
+    <img src="Images/WhitePlaySimple2.png" id="playbutton" class="playbutton" onclick="PlayPause()" style="display:none"></p>
+    <img src="Images/WhitePauseSimple.png" id="pausebutton" class="pausebutton" onclick="PlayPause()" style="display:block"></p>
+</mPLayer>
+
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">俺の店</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">何此れ</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#services">サービス</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">連絡</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#death">氏ね</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+
+
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section no-user-select">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>よーこそ</h1>
+                    <p><strong>ほら </strong>俺ん店丁度素晴らしいぜ.</p>
+                    <a class="btn btn-primary page-scroll" href="#about">これをクリックじゃあ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section no-user-select">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>アバウト</h1>
+                    <a class="btn btn-primary page-scroll" href="#about">これをクリックじゃあ</a>
+                </div>
+                <h5>これはね、俺のテストよ。 <cat><strong>すごいでしょ？</strong></cat> </h5>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section no-user-select">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>サービス</h1>
+                    <a class="btn btn-primary page-scroll" href="#about">これをクリックじゃあ</a>
+                </div>
+                <kbd>詰まらない</kbd>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section no-user-select">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Contact Section</h1>
+                    <!--<h4><font color="#1a6680">はい、連絡の方はこれ:</font> <h5 id="foo" class="text-info btn btn-slick" value="Input Button">wildcharizard@gnail.com</p></h4>-->
+                         <input type="button" onclick="ShowCopyBox();" id="foo" class="text-info btn-emailStyle btn-slick fader" value="wildcharizard@gnail.com">
+                         <!--<button class="btn1">Fade out</button>
+                         <button class="btn2">Fade in</button>
+                         <p class="ex">HI THERE NEIGHBOR</p>-->
+                </div>
+                     <div>
+                         <p id="rcorners1" style="display:none;" class="ex"></p>
+                     </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Death Section -->
+    <section id="death" class="death-section no-user-select">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>デースです</h1>
+                </div>
+                <h4><font color="#B48671">死ねば良いよ。いぁ、死ぬ方が<strong>マシ</strong></p></h4>
+                     <!--<img src="Images/BAKA.png" class="img-circle" alt="愛してあげるよ" width="304" height="236" onclick="randomMargin();ShowCopyBox2('馬鹿犬だわ♥')">-->
+                     <img src="Images/majo.png" class="img-circle" alt="愛してあげるよ" width="304" height="236" onclick="randomMargin();ShowCopyBox2('馬鹿犬だわ♥')">
+                     <p id="rcorners2" style="display:none;" class='ex randBox'></p>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+<!--Button to test scroll position-->
+<!--<a class="btn btn-primary" onclick="getScroll()">Wat my scroll pos?</a>-->
+
+<!--Instantiate music and music player-->
+<script>
+var audio = new Audio('Music/08 Voile Mahou Toshokan.mp3');
+audio.volume = 0.3;
+//USE this: $("#div_Id").hide();
+</script>
+
+<!-- SCRIPT AFTER THIS POINT -->
+
+    <!-- 1. Define some markup -->
+
+
+    <!-- 2. Include library -->
+    <script src="js/clipboard.min.js"></script>
+
+    <!-- 3. Instantiate clipboard -->
+    <script>
+    var clipboard = new Clipboard('.btn-emailStyle', {
+        text: function() {
+            return 'wildcharizard@gnail.com';
+        }
+    });
+
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+    </script>
+
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+    <script>
+    function ShowCopyBox(){
+        document.getElementById("rcorners1").innerHTML = "Copied";
+        var x = document.getElementById("rcorners1");
+        x.style.display='block';
+
+        setTimeout('fadeThat()', 1500);
+    }
+    </script>
+
+
+
+    <script>
+    function ShowCopyBox2(z){
+        document.getElementById("rcorners2").innerHTML = z;
+        var x = document.getElementById("rcorners2");
+        x.style.display='block';
+
+        setTimeout('fadeThat()', 2500);
+    }
+    </script>
+
+    <script>
+    function fadeThat(){
+
+        $(".ex").fadeOut();
+    }
+</script>
+
+<script>
+function sayHi() {
+    alert('Hello');
+}
+</script>
+
+<script>
+function randomMargin(){
+    var randomnumber1=Math.floor(Math.random()*80);
+    var randomnumber2=Math.floor(Math.random()*80);
+    $('.randBox').css({"top": randomnumber1+"%", "left": randomnumber2+"%"});
+}
+</script>
+
+
+<!--Play song-->
+<script>
+function playDankBeats(){
+    audio.play();
+}
+</script>
+
+<!--Pause/Play-->
+<script>
+function PlayPause() {
+    if(isPlaying(audio)) {
+        audio.pause();
+        $('.playbutton').css('display', 'block');
+        $('.pausebutton').css('display', 'none');
+    }
+    else {
+        audio.play();
+        $('.playbutton').css('display', 'none');
+        $('.pausebutton').css('display', 'block');
+    }
+}
+</script>
+
+<script>
+$(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+
+   //alertScroll();
+   //$('.BG').css({"top": "40%"});
+   if(scroll < 3000){
+       $('.BG').css({"opacity": (1 - scroll/3000),"top": (250*(scroll/3000)) + "%"});
+   }
+
+
+
+
+   //$('#log').text(e.clientX + ' ' + e.clientY + ' ' + delta.screenX + ' ' + delta.screenY);
+   if(!drag.state){
+        drag.elem = $('#scrolly');
+        $(drag.elem).offset({
+            //left: (cur_offset.left + delta.x),
+            top: scroll + $(window).height()*(scroll/$(document).height()) + 90
+        });
+   }
+
+
+
+});
+
+</script>
+
+
+<!--If at bottom of screen, play audio-->
+<script>
+$(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+   if(scroll + $(window).height() == $(document).height()) {
+       //alert(audio.currentTime);
+       if(!isPlaying(audio)){
+           audio.play();
+           showPlayer();
+           slideRight();
+       }
+   }
+});
+</script>
+
+<!--Animation that shows music player-->
+<script>
+function showPlayer() {
+
+    $('.MusicPlayer').css('display','block');
+}
+</script>
+
+<!--Alert() current scroll value-->
+<script>
+function alertScroll() {
+    var scroll = $(window).scrollTop();
+    alert(scroll);
+}
+</script>
+
+<!--BACKGROUND IMAGE SCROLL-->
+<script>
+$(window).scroll(function() {
+    var scroll = $(window).scrollTop();
+    //$('.BG').css({"top": (100*(scroll/5608.0))+"%"});
+});
+</script>
+
+<script>
+$(window).on('beforeunload', function() {
+    $(window).scrollTop(0);
+});
+</script>
+
+<!--Check if audio paused-->
+<script>
+function isPlaying(player) {
+    //var player = document.getElementById(playerId);
+    return !player.paused && !player.ended && 0 < player.currentTime;
+}
+</script>
+
+<!--BORROWED CODE (like a lot of this is btw)-->
+<script>
+    var item = document.getElementById("myBG");
+    var img_height = $(item).height();
+    var div_height = $(item).parent().height();
+    if(img_height<div_height){
+        //INCREASE HEIGHT OF IMAGE TO MATCH CONTAINER
+        $(item).css({'width': 'auto', 'height': div_height });
+        //GET THE NEW WIDTH AFTER RESIZE
+        var img_width = $(item).width();
+        //GET THE PARENT WIDTH
+        var div_width = $(item).parent().width();
+        //GET THE NEW HORIZONTAL MARGIN
+        var newMargin = (div_width-img_width)/2+'px';
+        //SET THE NEW HORIZONTAL MARGIN (EXCESS IMAGE WIDTH IS CROPPED)
+        $(item).css({'margin-left': newMargin });
+    }else{
+        //CENTER IT VERTICALLY (EXCESS IMAGE HEIGHT IS CROPPED)
+        var newMargin = (div_height-img_height)/2+'px';
+        $(item).css({'margin-top': newMargin});
+    }
+</script>
+
+<!--Move object across screen-->
+<script>
+function slideRight(){
+    //text-decoration: none;
+    //padding-right: 20px;
+    //left: 50%;
+    //position: absolute;
+    //$('.b').css('left','50%';'-webkit-animation','move 5s';'animation','move 5s');
+    alert($('.b').css('-webkit-animeation','move 5s');
+}
+</script>
+
+
+<!--Custom scrollbar-->
+
+<script>
+var scrolly = $('#scrolly');
+
+scrolly.offset({
+    right: 0,
+    top: 90
+});
+
+var drag = {
+    elem: null,
+    screenX: 0,
+    screenY: 0,
+    winX: 0,
+    winY: 0,
+    state: false
+};
+var delta = {
+    screenX: 0,
+    screenY: 0,
+    winX: 0,
+    winY: 0
+
+};
+
+scrolly.mousedown(function(e) {
+    if (!drag.state) {
+        drag.elem = this;
+        //this.style.backgroundColor = '#f00';
+        //drag.x = e.pageX;
+        drag.screenY = e.clientY;
+        drag.winY = e.pageY;
+        drag.state = true;
+    }
+    return false;
+});
+
+
+$(document).mousemove(function(e) {
+    if (drag.state) {
+        //drag.elem.style.backgroundColor = '#f0f';
+
+        //delta.x = e.pageX - drag.x;
+        delta.screenY = e.clientY - drag.screenY;
+        delta.winY = e.pageY - drag.winY;
+
+        //$('#log').text(e.clientX + ' ' + e.clientY + ' ' + delta.screenX + ' ' + delta.screenY);
+
+        var cur_offset = $(drag.elem).offset();
+        $(drag.elem).offset({
+            //left: (cur_offset.left + delta.x),
+            top: (cur_offset.top + delta.winY)
+        });
+
+        //drag.x = e.pageX;
+        drag.screenY = e.clientY;
+        drag.winY = e.pageY;
+
+        $(window).scrollTop($(window).scrollTop() + (delta.screenY/window.innerHeight)*5800);
+
+
+    }
+});
+
+$(document).mouseup(function() {
+    if (drag.state) {
+        //drag.elem.style.backgroundColor = '#808';
+        drag.state = false;
+    }
+});
+
+</script>
+    <!--<b id="rotator" class='b'><img src="//jsfiddle.net/img/logo.png" /></b>-->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/scrolling-nav.js"></script>
+
+
+</body>
+
+
+</html>
