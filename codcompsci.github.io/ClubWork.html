@@ -19,6 +19,7 @@
             -webkit-transform: rotate(7deg);
             margin-left: 10px;
             margin-top: -100px;
+            border-radius: 25px;
         }
         .about-us {
             float: right;
@@ -38,6 +39,11 @@
             background-size: 70px 120px;*/
         }
 
+        .hiddenScroll{
+            overflow-y: hidden;
+            overflow-x: hidden;
+            max-width: 100%;
+        }
         .member-section {
             overflow-y: scroll;
             height: 400px;
@@ -67,7 +73,8 @@
             border-width: 3 0 3px 0;
             height: 55px;
             width: 600px;
-            margin-left: 50px;
+            position: absolute;
+            /*margin-left: 50px;*/
         }
     </style>
 </head>
@@ -101,97 +108,100 @@
             NECK TILT
         </p>
     </section>
-    <section class="member-section">
-        <!-- <img class="mayoi" width="400px" src="Images/mayoi_hachikuji.png"/> -->
-        <div class="member">
-            <div class="name">
-                <span>
-                    Patrick
-                </span>
+    <div class="hiddenScroll">
+        <section class="member-section">
+            <!-- <img class="mayoi" width="400px" src="Images/mayoi_hachikuji.png"/> -->
+            <div class="member">
+                <div class="name">
+                    <span>
+                        Patrick
+                    </span>
+                </div>
+                <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
             </div>
-            <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
-        </div>
 
-        <div class="member">
-            <div class="name">
-                <span>
-                    Chris
-                </span>
+            <div class="member">
+                <div class="name">
+                    <span>
+                        Chris
+                    </span>
+                </div>
+                <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
             </div>
-            <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
-        </div>
 
-        <div class="member">
-            <div class="name">
-                <span>
-                    Chase
-                </span>
+            <div class="member">
+                <div class="name">
+                    <span>
+                        Chase
+                    </span>
+                </div>
+                <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
             </div>
-            <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
-        </div>
 
-        <div class="member">
-            <div class="name">
-                <span>
-                    Ivan
-                </span>
+            <div class="member">
+                <div class="name">
+                    <span>
+                        Ivan
+                    </span>
+                </div>
+                <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
             </div>
-            <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
-        </div>
 
-        <div class="member">
-            <span class="name">
-                <span>
-                    Cesar
+            <div class="member">
+                <span class="name">
+                    <span>
+                        Cesar
+                    </span>
                 </span>
-            </span>
-            <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
-        </div>
+                <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
+            </div>
 
-        <div class="member">
-            <div class="name">
-                <span>
-                    Andrew
-                </span>
+            <div class="member">
+                <div class="name">
+                    <span>
+                        Andrew
+                    </span>
+                </div>
+                <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
             </div>
-            <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
-        </div>
-        <div class="member">
-            <div class="name">
-                <span>
-                    Fred
-                </span>
+            <div class="member">
+                <div class="name">
+                    <span>
+                        Fred
+                    </span>
+                </div>
+                <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
             </div>
-            <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
-        </div>
-        <div class="member">
-            <div class="name">
-                <span>
-                    George
-                </span>
+            <div class="member">
+                <div class="name">
+                    <span>
+                        George
+                    </span>
+                </div>
+                <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
             </div>
-            <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
-        </div>
-        <div class="member">
-            <div class="name">
-                <span>
-                    Elmo
-                </span>
+            <div class="member">
+                <div class="name">
+                    <span>
+                        Elmo
+                    </span>
+                </div>
+                <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
             </div>
-            <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
-        </div>
-        <div class="member">
-            <div class="name">
-                <span>
-                    Elmooo
-                </span>
+            <div class="member">
+                <div class="name">
+                    <span>
+                        Elmooo
+                    </span>
+                </div>
+                <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
             </div>
-            <img width="50px" class="profile-pic" src="Images/Reimu2.jpg"
-        </div>
 
 
 
-    </section>
+        </section>
+    </div>
+
 
 <!-- <script>
 $(window).scroll(function()
@@ -202,11 +212,21 @@ $(window).scroll(function()
 </script> -->
 
 <script>
+var positions = [[0,0],[50,50],[100,100],[150,150],[200,100],[250,50],[300,0]];
+var index = 0;
+
+</script>
+
+<script>
 $('.member-section').scroll(function() {
     var scroll = $('.member-section').scrollTop();
     var left = parseInt($('.name').css("margin-left"));
     // $('.name').css('margin-left',left+scroll);
-    $('.name').css('margin-left',1*scroll);
+    //$('.name').css('margin-left',1*scroll);
+    $('.name').css('margin-bottom',1*scroll);
+    $('.patty').css('-webkit-transform','rotate(' + 1*scroll + 'deg)');
+    //$('.member-section').css('-webkit-transform','rotate(' + 0.1*scroll + 'deg)');
+    //$('.patty').css('-webkit-transform','rotate(360deg)');
 });
 
 </script>
