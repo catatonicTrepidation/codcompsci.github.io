@@ -48,7 +48,7 @@
             overflow-y: scroll;
             height: 400px;
             width: 1000px;
-            margin-top: 75px;
+            margin-top: 40px;
         }
         .name {
             width: 50px;
@@ -63,14 +63,18 @@
         .profile-pic {
             margin-left: 10px;
             width: 50px;
+            -webkit-transition-property: width; /* Safari */
+            -webkit-transition-duration: 0.3s; /* Safari */
+            transition-property: width;
+            transition-duration: 0.3s;
         }
 
         .member {
             color: #3af;
             background-color:black;
-            border-color: #c7c7c7;;
+            /*border-color: #c7c7c7;;
             border-style: dashed;
-            border-width: 3 0 3px 0;
+            border-width: 3 0 3px 0;*/
             height: 55px;
             width: 600px;
             position: absolute;
@@ -212,8 +216,50 @@ $(window).scroll(function()
 </script> -->
 
 <script>
-var positions = [[0,0],[50,50],[100,100],[150,150],[200,100],[250,50],[300,0]];
+var positionsLeft = [[0,0],[10,50],[20,100],[30,150],[40,150],[50,150],[-10,100],[-20,50],[-30,0],[-40,150],[-50,150]];
+var positionsTop = [0,20,40,60,80,100,120,140,160,180];
+var colors = ["blue","orange","blue","orange","blue","orange","blue","orange","blue","orange"]
 var index = 0;
+
+$( ".profile-pic" ).mouseover(function() {
+    //alert("hi")
+     $(this).css('width','100px');
+});
+$( ".profile-pic" ).mouseout(function() {
+    //alert("hi")
+     $(this).css('width','50px');
+});
+
+$('.member').each(function(i, obj) {
+ $(this).css('margin-left',positionsLeft[i][0]);
+ $(this).css('background-color',colors[i]);
+});
+
+// $('.member').each(function(i, obj) {
+//  $(this).css('margin-top',positionsTop[i]);
+// });
+
+</script>
+
+<script>
+document.addEventListener('keydown', function(event) {
+    if(event.keyCode == 37) {
+        //alert('Left was pressed');
+        index = index+1;
+    }
+    else if(event.keyCode == 39) {
+        //alert('Right was pressed');
+        index = index-1;
+    }
+    $('.member').each(function(i, obj) {
+     $(this).css('margin-left',positionsLeft[(i+index)%10][0]);
+    });
+
+
+    // $('.member').each(function(i, obj) {
+    //  $(this).css('margin-top',positionsTop[(i+index)%10]);
+    // });
+});
 
 </script>
 
